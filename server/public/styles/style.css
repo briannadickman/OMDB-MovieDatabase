@@ -1,0 +1,19 @@
+h1 {
+  text-align: center;
+}
+
+/*.container-fluid {
+  width: 95%;
+}*/
+
+#favoritesOutput {
+  background-color: yellow;
+}
+
+#searchForm {
+  background-color: red;
+}
+
+#searchOutput {
+  background-color: green;
+}
