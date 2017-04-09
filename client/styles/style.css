@@ -17,3 +17,7 @@ h1 {
 #searchOutput {
   background-color: green;
 }
+
+.input-group {
+  padding-bottom: 15px;
+}

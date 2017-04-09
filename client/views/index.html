@@ -18,36 +18,33 @@
       <div class='row'>
         <div class='col-md-6' id='favoritesOutput'>
           <h3 class='lead'>Favorites</h3>
-            <p>  </p>
 
         </div>
 
         <div class='col-md-6'>
           <div class='row'>
-            <div class='col-md-12' id='searchForm' ng-controller='SearchController'>
+            <div class='col-md-12' id='searchForm'>
+            <div ng-controller='SearchController'>
               <h3 class='lead'>Search Movies</h3>
-                <div class="row">
-                    <div class='col-md-12'>
                       <div class='input-group'>
                         <input type="text" placeholder="Search for..." class='form-control' ng-model='movieSearch'>
                         <span class='input-group-btn'>
                           <button class='btn btn-default' type='button' ng-click='getResult()'>Search!</button>
                         </span>
                       </div>
-                    </div>
-                </div>
-            </div>
-          </div>
+
           <div class='row'>
             <div class='col-md-12' id='searchOutput'>
               <h3 class='lead'>Results</h3>
-                <div ng-controller='SearchController'>
-                <!-- <div ng-show='searchMovies(title)'> -->
-                  <!-- <p> {{ infoFromOMDB[0].data }} </p> -->
-                </div>
+                {{ movieService.movie }}
             </div>
           </div>
+          </div>
+          </div>
+
+          </div>
         </div>
+
       </div>
     </div>
 
