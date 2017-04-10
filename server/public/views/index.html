@@ -17,8 +17,10 @@
     <div class='container-fluid'>
       <div class='row'>
         <div class='col-md-6' id='favoritesOutput'>
+          <div ng-controller='FavoritesController'>
           <h3 class='lead'>Favorites</h3>
 
+        </div>
         </div>
 
         <div class='col-md-6'>
@@ -29,14 +31,14 @@
                       <div class='input-group'>
                         <input type="text" placeholder="Search for..." class='form-control' ng-model='movieSearch'>
                         <span class='input-group-btn'>
-                          <button class='btn btn-default' type='button' ng-click='getResult()'>Search!</button>
+                          <button class='btn btn-default' type='button' ng-click='searchMovies(movieSearch)'>Search!</button>
                         </span>
                       </div>
 
           <div class='row'>
             <div class='col-md-12' id='searchOutput'>
               <h3 class='lead'>Results</h3>
-                {{ movieService.movie }}
+                {{ movieService.movieResult }}
             </div>
           </div>
           </div>
