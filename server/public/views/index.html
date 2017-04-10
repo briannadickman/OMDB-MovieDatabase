@@ -9,24 +9,35 @@
 
     <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
     <script type="text/javascript" src="scripts/client.min.js"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=BioRhyme:800|Raleway" rel="stylesheet">
   </head>
   <body>
-
-    <h1 class='page-header'>OMDB DATABASE FAVORITES</h1>
+    <div class='container-fluid' id='header'>
+      <h1>OMDB FAVORITES</h1>
+    </div>
+    <div class='container'>
     <div class='container-fluid'>
       <div class='row'>
         <div class='col-md-6' id='favoritesOutput'>
           <div ng-controller='FavoritesController'>
           <h3 class='lead'>Favorites</h3>
-
+            <div  class='box'>
+            <div ng-repeat='movie in favoriteMovies'>
+              <div class='favorite'>
+              <span class='glyphicon glyphicon-star'></span>
+              <b>{{ movie.movie.title }}</b>
+              {{ movie.movie.year }} |
+              {{ movie.movie.runtime }} |
+              {{ movie.movie.genre }}</div>
+            </div>
+          </div>
         </div>
         </div>
 
         <div class='col-md-6'>
           <div class='row'>
-            <div class='col-md-12' id='searchForm'>
             <div ng-controller='SearchController'>
+            <div class='col-md-12' id='searchForm'>
               <h3 class='lead'>Search Movies</h3>
                       <div class='input-group'>
                         <input type="text" placeholder="Search for..." class='form-control' ng-model='movieSearch'>
@@ -37,8 +48,15 @@
 
           <div class='row'>
             <div class='col-md-12' id='searchOutput'>
-              <h3 class='lead'>Results</h3>
-              <div class="row centered">
+              <div class="pull-left"><h3 class='lead'>Results</h3></div>
+                <div class="pull-right">
+                  <button class='btn-primary-outline' type='buton' ng-click='favoriteMovie(movieSearch)'><h3 class="glyphicon glyphicon-star pull-right"></h3></button>
+                </div>
+              <div class='clearfix'></div>
+
+
+              <div class="row" >
+                <div class='result-box'>
                 <div class="col-md-9 movieResult" ng-show='showResult'>
                       <h4>{{ movieResult.movie.title }}</h4>
                       <p class=text-right><small>{{ movieResult.movie.director }} |
@@ -49,16 +67,18 @@
                       </small>
                 </div>
               </div>
+              </div>
             </div>
           </div>
           </div>
-          </div>
+          <!-- </div> -->
 
           </div>
         </div>
 
       </div>
     </div>
+  </div>
 
   </body>
 </html>

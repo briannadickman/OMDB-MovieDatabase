@@ -3,6 +3,9 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('FavoritesController', ['$scope', 'MovieService', function($scope, MovieService){
   console.log('FavoritesController');
+
+  $scope.favoriteMovies = MovieService.factoryFaves;
+
 }]);
 
 
@@ -15,6 +18,9 @@ myApp.controller('SearchController', ['$scope', 'MovieService', function($scope,
   $scope.searchMovies = MovieService.factorySearchQuery;
   $scope.movieResult = MovieService.movieResult;
 
+  // ADD TO FAVORITES
+  $scope.favoriteMovie = MovieService.factoryAddToFaves;
+
 }]);
 
 
@@ -26,13 +32,24 @@ myApp.factory('MovieService', ['$http', function($http){
   };
   var favoriteMovies = [];
 
+  var addToFaves = function(movieSearch){
+    movieSearch = movieResult;
+    var copy = angular.copy(movieResult);
+    console.log('adding ' + copy +  ' to favorite');
+    favoriteMovies.push(copy);
+    appendFaves(favoriteMovies);
+  };
+
+  function appendFaves(favoriteMovies){
+    console.log("favorite movies are: ", favoriteMovies);
+  }
+
   var searchQuery = function(movieSearch){
     var movie = movieSearch;
     console.log(movie);
     console.log('I was clicked!');
     getOMDB(movie);
   };
-
 
   function getOMDB(movie){
     var OMDBmovie = movie;
@@ -59,7 +76,8 @@ myApp.factory('MovieService', ['$http', function($http){
   return {
     movieResult: movieResult,
     factorySearchQuery: searchQuery,
-
+    factoryAddToFaves: addToFaves,
+    factoryFaves: favoriteMovies
   };
 
 }]);
