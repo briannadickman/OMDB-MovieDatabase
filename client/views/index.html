@@ -31,15 +31,23 @@
                       <div class='input-group'>
                         <input type="text" placeholder="Search for..." class='form-control' ng-model='movieSearch'>
                         <span class='input-group-btn'>
-                          <button class='btn btn-default' type='button' ng-click='searchMovies(movieSearch)'>Search!</button>
+                          <button class='btn btn-default' type='button' ng-click='searchMovies(movieSearch); showResult=true'>Search!</button>
                         </span>
                       </div>
 
           <div class='row'>
             <div class='col-md-12' id='searchOutput'>
               <h3 class='lead'>Results</h3>
-              <div ng-repeat='movie in movieResult'>
-                {{ movieService.movieResult }}
+              <div class="row centered">
+                <div class="col-md-9 movieResult" ng-show='showResult'>
+                      <h4>{{ movieResult.movie.title }}</h4>
+                      <p class=text-right><small>{{ movieResult.movie.director }} |
+                      {{ movieResult.movie.year }}</p></small>
+                      <p>{{ movieResult.movie.plot }}</p>
+                      <p class='text-right'><small>{{ movieResult.movie.genre }} |
+                      {{ movieResult.movie.runtime }}</p>
+                      </small>
+                </div>
               </div>
             </div>
           </div>

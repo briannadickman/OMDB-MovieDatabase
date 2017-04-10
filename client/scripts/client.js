@@ -14,7 +14,6 @@ myApp.controller('SearchController', ['$scope', 'MovieService', function($scope,
   $scope.movieSearch = '';
   $scope.searchMovies = MovieService.factorySearchQuery;
   $scope.movieResult = MovieService.movieResult;
-  // $scope.getResult = MovieService.getOMDB();
 
 }]);
 
@@ -22,7 +21,9 @@ myApp.controller('SearchController', ['$scope', 'MovieService', function($scope,
 
 myApp.factory('MovieService', ['$http', function($http){
   var movie = movie;
-  var movieResult = [];
+  var movieResult = {
+    movie: ''
+  };
   var favoriteMovies = [];
 
   var searchQuery = function(movieSearch){
@@ -35,6 +36,7 @@ myApp.factory('MovieService', ['$http', function($http){
 
   function getOMDB(movie){
     var OMDBmovie = movie;
+
     console.log(OMDBmovie);
     $http.get('http://www.omdbapi.com/?t=' + OMDBmovie + '&y=&plot=short&r=json').then(function(response){
     var movieResultOMDB = {
@@ -45,36 +47,19 @@ myApp.factory('MovieService', ['$http', function($http){
         plot: response.data.Plot,
         genre: response.data.Genre
       };
-      // console.log("movieResult is: ", movieResultOMDB);
-      movieResult.push(movieResultOMDB);
-      // movieReturnArray.push(movieResult);
-      console.log(movieResult);
+      var copy = angular.copy(movieResultOMDB);
+      movieResult.movie = copy;
+
     });
+
   }
-  // console.log("Outside function: ", movieResult);
+
 
 
   return {
     movieResult: movieResult,
     factorySearchQuery: searchQuery,
-    // factoryGetOMDB: function(){
-    //   var OMDBmovie = movie;
-    //   console.log(OMDBmovie);
-    //   $http.get('http://www.omdbapi.com/?t=' + OMDBmovie + '&y=&plot=short&r=json').then(function(response){
-    //   var movieResultOMDB = {
-    //       title: response.data.Title,
-    //       runtime: response.data.Runtime,
-    //       year: response.data.Year,
-    //       director: response.data.Director,
-    //       plot: response.data.Plot,
-    //       genre: response.data.Genre
-    //     };
-    //     // console.log("movieResult is: ", movieResultOMDB);
-    //     movieResult = movieResultOMDB;
-    //     // movieReturnArray.push(movieResult);
-    //     console.log(movieResult);
-    //   });
-    // }
+
   };
 
 }]);

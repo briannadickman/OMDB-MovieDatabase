@@ -21,3 +21,9 @@ h1 {
 .input-group {
   padding-bottom: 15px;
 }
+
+.movieResult {
+  margin: 0 auto;
+  float: none;
+  padding-bottom: 50px;
+}
