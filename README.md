@@ -37,4 +37,4 @@ No contributions.
 
 ## Authors
 
-* **Brianna Dickman** - [BriMarieDesign] (https://brimariedesign.com)
+* **Brianna Dickman** - (https://github.com/briannadickman)
